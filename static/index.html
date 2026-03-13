@@ -42,6 +42,8 @@
   </div>
 
   <script>
+    const API_BASE = window.__API_BASE__ || (window.location.port === '5500' ? 'http://localhost:8000' : '');
+
     document.getElementById('query').addEventListener('keydown', function(e) {
       if (e.key === 'Enter') doSearch();
     });
@@ -59,12 +61,20 @@
       resultsEl.innerHTML = '<div class="status">搜索中...</div>';
 
       try {
-        const resp = await fetch(`/search?q=${encodeURIComponent(q)}&mode=${mode}`);
+        const resp = await fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&mode=${mode}`);
         if (!resp.ok) {
-          const err = await resp.json();
-          resultsEl.innerHTML = `<div class="status error">错误：${err.detail || resp.statusText}</div>`;
+          const contentType = resp.headers.get('content-type') || '';
+          if (contentType.includes('application/json')) {
+            const err = await resp.json();
+            resultsEl.innerHTML = `<div class="status error">错误：${err.detail || resp.statusText}</div>`;
+          } else {
+            const text = await resp.text();
+            const message = text.trim() ? text.slice(0, 120) : resp.statusText;
+            resultsEl.innerHTML = `<div class="status error">错误：HTTP ${resp.status} - ${escapeHtml(message)}</div>`;
+          }
           return;
         }
+
         const data = await resp.json();
         renderResults(data);
       } catch (e) {
