@@ -1,0 +1,19 @@
+<html>
+<head><title>QA On-Call SOP</title>
+<style>
+.critical { background: #ff0000; color: white; padding: 4px; }
+.blocker { border: 2px solid red; }
+</style>
+</head>
+<body>
+<h1>QA On-Call SOP</h1>
+<h2>一、值班职责</h2>
+<p>QA on-call 负责生产环境的质量监控和线上问题的快速验证。配合各业务团队确认故障影响范围。</p>
+<h2>二、常见任务</h2>
+<p>线上问题复现：收到故障报告后，在预发布环境复现问题，提供详细的复现步骤和日志。</p>
+<p>紧急发版验证：热修复发版前完成核心流程的回归测试，确保修复不引入新问题。</p>
+<p>自动化测试告警：CI/CD 流水线中自动化测试失败率 &gt; 5% 时介入排查，区分环境问题和代码缺陷。</p>
+<h2>三、升级流程</h2>
+<p>发现 <span class="critical">P0 级别</span> 缺陷：立即通知对应开发团队和技术负责人，阻塞相关发版流程。</p>
+</body>
+</html>

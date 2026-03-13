@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>数据库 On-Call SOP</title>
+<style>
+.alert { color: red; font-weight: bold; }
+.warning { color: orange; }
+table { border-collapse: collapse; }
+</style>
+</head>
+<body>
+<h1>数据库 On-Call SOP</h1>
+<script>
+// 监控脚本，不是文档内容
+function checkReplication() { return "replication lag: 0s"; }
+var alertLevel = "warning";
+var database = "production";
+var failover = "standby-01";
+</script>
+<h2>一、值班职责</h2>
+<p>DBA on-call 负责数据库集群的稳定性，包括主从同步、慢查询优化和容量管理。</p>
+<h2>二、常见故障处理</h2>
+<p>主从延迟超过 <span class="alert">10 秒</span>：检查是否有大事务阻塞复制，必要时暂停非关键的批量写入任务。</p>
+<p>磁盘使用率超过 85%：清理过期 binlog，归档历史数据，扩容磁盘。</p>
+<h2>三、禁止操作</h2>
+<p>值班期间禁止执行 DDL 变更，禁止手动修改生产数据，所有操作需记录在值班日志中。</p>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html>
+<head><title>AI &amp; 算法 On-Call SOP</title></head>
+<body>
+<h1>AI &amp; 算法 On-Call SOP</h1>
+<script>
+// 模型监控指标采集
+var modelLatency = {"p50": 120, "p99": 450};
+var gpuUtilization = 0.85;
+function alertOnDrift() { console.log("model drift detected"); }
+</script>
+<h2>一、值班职责</h2>
+<p>AI on-call 负责线上模型服务的稳定性和效果监控，包括推荐系统、搜索排序和内容理解等模块。</p>
+<h2>二、常见故障处理</h2>
+<p>模型推理延迟升高：检查 GPU 利用率和显存占用。确认是否有 batch size 配置异常或模型版本回归。</p>
+<p>效果指标下降：CTR 或转化率下降 &gt; 10% 时，检查特征管道是否有数据缺失，确认模型是否发生漂移。</p>
+<p>GPU 集群故障：协调 SRE 团队进行节点替换，将流量切换到备用集群。</p>
+<h2>三、模型回滚</h2>
+<p>若新模型上线后核心指标持续下降超过 30 分钟，执行模型版本回滚。回滚后通知算法负责人排查原因。</p>
+</body>
+</html>
