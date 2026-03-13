@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+beautifulsoup4
+jieba
+sentence-transformers
+numpy
+httpx
+pytest
+pytest-asyncio
