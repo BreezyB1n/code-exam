@@ -1,5 +1,29 @@
 # 编程面试：构建一个搜索引擎
 
+## 快速启动
+
+### 安装依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+### 启动服务
+
+```bash
+uvicorn main:app --reload
+```
+
+服务默认运行在 `http://localhost:8000`，启动时自动加载 `data/` 目录下的全部 10 份文档。
+
+### 运行测试
+
+```bash
+pytest tests/ -v
+```
+
+---
+
 ## 概述
 
 你需要构建一个**搜索引擎 Web 应用**，对一组 HTML 格式的 On-Call SOP 文档进行解析、索引和搜索。
